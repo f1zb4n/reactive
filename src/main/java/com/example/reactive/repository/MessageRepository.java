@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -24,22 +25,23 @@ public class MessageRepository {
         Stream.of("First Message", "Second Message")
                 .forEach(text -> {
                             long id = ID_COUNTER++;
-                            DATA.put(id, Message.builder().id(id).text(text).build());
+                            DATA.put(id, Message.builder().id(id).text(text).timestamp(LocalDateTime.now()).build());
                         }
                 );
     }
 
-    Flux<Message> findAll() {
+    public Flux<Message> findAll() {
         return Flux.fromIterable(DATA.values());
     }
 
-    Mono<Message> findById(Long id) {
+    public Mono<Message> findById(Long id) {
         return Mono.just(DATA.get(id));
     }
 
-    Mono<Message> createMessage(Message Message) {
+    public Mono<Message> createMessage(Message Message) {
         long id = ID_COUNTER++;
         Message.setId(id);
+        Message.setTimestamp(LocalDateTime.now());
         DATA.put(id, Message);
         return Mono.just(Message);
     }
