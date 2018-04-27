@@ -22,7 +22,7 @@ public class MessageRepository {
     private static long ID_COUNTER = 1L;
 
     static {
-        Stream.of("First Message", "Second Message")
+        Stream.of("First Message", "Second Message", "Third Message")
                 .forEach(text -> {
                             long id = ID_COUNTER++;
                             DATA.put(id, Message.builder().id(id).text(text).timestamp(LocalDateTime.now()).build());
@@ -38,11 +38,11 @@ public class MessageRepository {
         return Mono.just(DATA.get(id));
     }
 
-    public Mono<Message> createMessage(Message Message) {
+    public Mono<Message> createMessage(Message message) {
         long id = ID_COUNTER++;
-        Message.setId(id);
-        Message.setTimestamp(LocalDateTime.now());
-        DATA.put(id, Message);
-        return Mono.just(Message);
+        message.setId(id);
+        message.setTimestamp(LocalDateTime.now());
+        DATA.put(id, message);
+        return Mono.just(message);
     }
 }

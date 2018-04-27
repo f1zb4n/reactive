@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Message {
 
     private Long id;
-    @Size(min = 1, max = 560) // beat twitter by factor 2
+    @Size(min = 2, max = 560) // beat twitter by factor 2
     private String text;
     private LocalDateTime timestamp;
 
