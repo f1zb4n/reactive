@@ -35,7 +35,7 @@ public class MessageRepository {
     }
 
     public Mono<Message> findById(Long id) {
-        return Mono.just(DATA.get(id));
+        return DATA.containsKey(id) ? Mono.just(DATA.get(id)) : Mono.empty();
     }
 
     public Mono<Message> createMessage(Message message) {

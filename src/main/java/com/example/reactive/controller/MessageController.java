@@ -2,7 +2,6 @@ package com.example.reactive.controller;
 
 import com.example.reactive.model.Message;
 import com.example.reactive.repository.MessageRepository;
-import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
